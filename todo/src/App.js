@@ -14,18 +14,23 @@ function App() {
   }
   return (
     <div className="App">
+      <header>
       <h1>To Do List</h1>
-      <input
-                type='text'
-                value={task}
-                onChange = {handleChanges}
-                />
-             <button onClick = {()=>{
-                 dispatch({ type: 'ADD_ITEM', payload: task})
-                 setTask('');
-                    }} 
-             >Add Item
-                </button>  
+      </header>
+      <div className='enterTask'>
+        <input
+          type='text'
+          value={task}
+          onChange = {handleChanges}
+          />
+
+        <button onClick = {()=>{
+            dispatch({ type: 'ADD_ITEM', payload: task})
+            setTask('');
+              }} 
+            >Add Item
+          </button> 
+      </div>
         <h3>Tasks:</h3> 
         <div> {state.map(todo => (
                     <p onClick={() => dispatch({ type: 'MARK_COMPLETED', payload: todo.id })} key={todo.id} className={`${todo.completed ? ' completed' : ''}`}>{todo.task}</p>
@@ -33,7 +38,7 @@ function App() {
 </div>           
  
 
-       <button onClick={()=> dispatch({type: 'REMOVE_ITEM'})}> Clear completed </button>
+       <button className='clear-btn' onClick={()=> dispatch({type: 'REMOVE_ITEM'})}> Clear completed </button>
     </div>
   );
 }
